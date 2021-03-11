@@ -1,18 +1,14 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
-  </div>
+  <GmapMap
+    :center="{ lat: 38.05629563288619, lng: 23.80496830013357 }"
+    :zoom="15"
+    map-type-id="terrain"
+    style="width: 100%; height: 500px"
+  />
 </template>
 
-<script lang="ts">
-import { Options, Vue } from "vue-class-component";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
-
-@Options({
-  components: {
-    HelloWorld
-  }
-})
-export default class Home extends Vue {}
+<script>
+export default {
+  name: "Home"
+};
 </script>
