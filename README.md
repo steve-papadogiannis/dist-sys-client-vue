@@ -1,4 +1,4 @@
-# dist-sys-client-vue
+# Directions Map Reduce Client
 
 ## Project setup
 ```
