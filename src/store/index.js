@@ -6,7 +6,8 @@ Vue.use(Vuex);
 
 const getDefaultState = () => {
   return {
-    results: []
+    results: [],
+    showLoading: false
   };
 };
 
@@ -20,6 +21,9 @@ export default new Vuex.Store({
       // Merge rather than replace so we don't lose observers
       // https://github.com/vuejs/vuex/issues/1118
       Object.assign(state, getDefaultState());
+    },
+    storeShowLoading(state, value) {
+      state.showLoading = value;
     }
   },
   actions: {
@@ -29,11 +33,16 @@ export default new Vuex.Store({
         .then(response => {
           console.log(response);
           commit("storeResult", response.data);
+          commit("storeShowLoading", false);
         })
         .catch(error => {
           console.error("There was an error!", error);
+          commit("storeShowLoading", false);
         });
     }
   },
-  modules: {}
+  modules: {},
+  getters: {
+    getShowLoading: state => state.showLoading
+  }
 });

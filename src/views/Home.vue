@@ -28,6 +28,9 @@ import Button from "../components/Button";
 export default {
   name: "Home",
   components: { Button },
+  created() {
+    this.resetState();
+  },
   data() {
     return {
       markers: []
@@ -55,6 +58,7 @@ export default {
     },
     submit() {
       if (this.markers.length === 2) {
+        this.storeShowLoading(true);
         const startGeoPoint = this.markers[0];
         const endGeoPoint = this.markers[1];
         this.getDirections({
@@ -70,7 +74,7 @@ export default {
       }
     },
     ...mapActions(["getDirections"]),
-    ...mapMutations(["resetState"])
+    ...mapMutations(["resetState", "storeShowLoading"])
   }
 };
 </script>
