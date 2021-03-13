@@ -7,7 +7,8 @@ Vue.use(Vuex);
 const getDefaultState = () => {
   return {
     results: [],
-    showLoading: false
+    showLoading: false,
+    items: []
   };
 };
 
@@ -24,6 +25,9 @@ export default new Vuex.Store({
     },
     storeShowLoading(state, value) {
       state.showLoading = value;
+    },
+    storeInfoAreaItems(state, items) {
+      state.items = items;
     }
   },
   actions: {
@@ -37,12 +41,19 @@ export default new Vuex.Store({
         })
         .catch(error => {
           console.error("There was an error!", error);
+          commit("storeInfoAreaItems", [
+            {
+              message: error.message,
+              type: "error"
+            }
+          ]);
           commit("storeShowLoading", false);
         });
     }
   },
   modules: {},
   getters: {
-    getShowLoading: state => state.showLoading
+    getShowLoading: state => state.showLoading,
+    getInfoAreaItems: state => state.items
   }
 });

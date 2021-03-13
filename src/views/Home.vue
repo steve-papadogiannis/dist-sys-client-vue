@@ -18,16 +18,18 @@
       <GmapPolyline :path="this.results" />
     </GmapMap>
     <Button :value="'Get Directions'" @click="submit" />
+    <InfoArea />
   </div>
 </template>
 
 <script>
 import { mapActions, mapState, mapMutations } from "vuex/dist/vuex.mjs";
 import Button from "../components/Button";
+import InfoArea from "../components/InfoArea";
 
 export default {
   name: "Home",
-  components: { Button },
+  components: { InfoArea, Button },
   created() {
     this.resetState();
   },
@@ -71,10 +73,17 @@ export default {
             longitude: endGeoPoint.position.lng
           }
         });
+      } else {
+        this.storeInfoAreaItems([
+          {
+            message: "You should set two markers",
+            type: "warning"
+          }
+        ]);
       }
     },
     ...mapActions(["getDirections"]),
-    ...mapMutations(["resetState", "storeShowLoading"])
+    ...mapMutations(["resetState", "storeShowLoading", "storeInfoAreaItems"])
   }
 };
 </script>
