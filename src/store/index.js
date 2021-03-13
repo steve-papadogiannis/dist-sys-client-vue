@@ -4,13 +4,22 @@ import axios from "axios";
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
-  state: {
+const getDefaultState = () => {
+  return {
     results: []
-  },
+  };
+};
+
+export default new Vuex.Store({
+  state: getDefaultState(),
   mutations: {
     storeResult(state, results) {
       state.results = results;
+    },
+    resetState(state) {
+      // Merge rather than replace so we don't lose observers
+      // https://github.com/vuejs/vuex/issues/1118
+      Object.assign(state, getDefaultState());
     }
   },
   actions: {

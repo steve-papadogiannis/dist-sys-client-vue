@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex/dist/vuex.mjs";
+import { mapActions, mapState, mapMutations } from "vuex/dist/vuex.mjs";
 import Button from "../components/Button";
 
 export default {
@@ -38,6 +38,7 @@ export default {
   },
   methods: {
     mapRightClick(event) {
+      this.resetState();
       if (this.markers.length === 2) {
         this.markers.splice(0, 1);
       }
@@ -49,6 +50,7 @@ export default {
       });
     },
     markerRightClick(index) {
+      this.resetState();
       this.markers.splice(index, 1);
     },
     submit() {
@@ -67,7 +69,8 @@ export default {
         });
       }
     },
-    ...mapActions(["getDirections"])
+    ...mapActions(["getDirections"]),
+    ...mapMutations(["resetState"])
   }
 };
 </script>
