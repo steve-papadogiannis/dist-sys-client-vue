@@ -17,22 +17,17 @@
 
       <GmapPolyline :path="this.results" />
     </GmapMap>
-    <button
-      type="submit"
-      value="Get Directions"
-      style="width: 200px; height:60px"
-      @click="submit"
-    >
-      <span>Get Directions</span>
-    </button>
+    <Button :value="'Get Directions'" @click="submit" />
   </div>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex/dist/vuex.mjs";
+import Button from "../components/Button";
 
 export default {
   name: "Home",
+  components: { Button },
   data() {
     return {
       markers: []
