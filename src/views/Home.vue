@@ -2,11 +2,10 @@
   <div id="root">
     <GmapMap
       id="googleMap"
-      :center="{ lat: 38.05629563288619, lng: 23.80496830013357 }"
-      :zoom="15"
+      :center="{ lat: lat, lng: lng }"
+      :zoom="zoomLevel"
       @rightclick="mapRightClick"
       map-type-id="terrain"
-      style="width: 100%; height: 500px"
     >
       <GmapMarker
         v-for="(marker, index) in markers"
@@ -14,7 +13,6 @@
         :position="marker.position"
         @rightclick="markerRightClick(index)"
       />
-
       <GmapPolyline :path="this.results" />
     </GmapMap>
     <Button :value="'Get Directions'" @click="submit" />
@@ -26,6 +24,12 @@
 import { mapActions, mapState, mapMutations } from "vuex/dist/vuex.mjs";
 import Button from "../components/Button";
 import InfoArea from "../components/InfoArea";
+import {
+  ZOOM_LEVEL,
+  CENTER_LNG,
+  CENTER_LAT,
+  MAX_NUMBER_OF_MARKERS
+} from "../constants";
 
 export default {
   name: "Home",
@@ -35,7 +39,10 @@ export default {
   },
   data() {
     return {
-      markers: []
+      markers: [],
+      zoomLevel: ZOOM_LEVEL,
+      lat: CENTER_LAT,
+      lng: CENTER_LNG
     };
   },
   computed: {
@@ -44,7 +51,7 @@ export default {
   methods: {
     mapRightClick(event) {
       this.resetState();
-      if (this.markers.length === 2) {
+      if (this.markers.length === MAX_NUMBER_OF_MARKERS) {
         this.markers.splice(0, 1);
       }
       this.markers.push({
@@ -59,7 +66,7 @@ export default {
       this.markers.splice(index, 1);
     },
     submit() {
-      if (this.markers.length === 2) {
+      if (this.markers.length === MAX_NUMBER_OF_MARKERS) {
         this.storeShowLoading(true);
         const startGeoPoint = this.markers[0];
         const endGeoPoint = this.markers[1];
@@ -87,3 +94,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+#googleMap {
+  width: 100%;
+  height: 500px;
+}
+</style>
