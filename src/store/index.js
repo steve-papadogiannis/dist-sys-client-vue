@@ -12,6 +12,9 @@ const getDefaultState = () => {
   };
 };
 
+const HOST_NAME = process.env.VUE_APP_HOST_NAME;
+const PORT = process.env.VUE_APP_PORT;
+
 export default new Vuex.Store({
   state: getDefaultState(),
   mutations: {
@@ -34,12 +37,12 @@ export default new Vuex.Store({
     getDirections({ commit }, jsonBody) {
       commit("storeInfoAreaItems", [
         {
-          message: "Get Directions was invoked for " + JSON.stringify(jsonBody),
+          message: `Get Directions was invoked for ${JSON.stringify(jsonBody)}`,
           type: "info"
         }
       ]);
       axios
-        .post("http://localhost:8383/getDirections", jsonBody)
+        .post(`http://${HOST_NAME}:${PORT}/getDirections`, jsonBody)
         .then(response => {
           console.log(response);
           commit("storeResult", response.data);
