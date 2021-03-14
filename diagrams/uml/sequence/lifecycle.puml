@@ -1,0 +1,56 @@
+@startuml
+skinparam sequenceArrowThickness 2
+skinparam roundcorner 20
+
+actor User
+box Service
+participant Client
+end box
+boundary Server
+
+autonumber "<b>[000]"
+
+== Initialization ==
+
+User -> Client : Navigates to App Route Url
+activate Client
+
+== Runtime ==
+
+loop 0..n
+
+opt
+User -> Client : Sets the start location marker
+end
+
+opt
+User -> Client : Sets the end location marker
+end
+
+User -> Client : Presses "Get Directions" button
+
+alt start and/or end location(s) are/is not defined
+Client --> User : Informs that the necessary location markers are not defined
+else
+Client -> Server : Queries for Directions Result
+alt connection error
+Client -> Client : Informs for the connection error
+Client --> User : Informs for the connection error
+else server error
+Server --> Client : Informs for the internal error
+Client --> User : Informs for the internal error
+else successful invocation
+Server --> Client : Responds with result
+Client -> Client : Renders polyline from result
+Client --> User : Renders polyline from result
+end
+end
+
+end
+
+== Shutdown ==
+
+User -> Client : Leaves web app
+deactivate Client
+
+@enduml
