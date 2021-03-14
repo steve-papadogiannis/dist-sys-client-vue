@@ -47,4 +47,8 @@ li {
 .warning {
   color: yellow;
 }
+
+.info {
+  color: green;
+}
 </style>

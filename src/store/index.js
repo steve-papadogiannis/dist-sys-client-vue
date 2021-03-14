@@ -32,6 +32,12 @@ export default new Vuex.Store({
   },
   actions: {
     getDirections({ commit }, jsonBody) {
+      commit("storeInfoAreaItems", [
+        {
+          message: "Get Directions was invoked for " + JSON.stringify(jsonBody),
+          type: "info"
+        }
+      ]);
       axios
         .post("http://localhost:8383/getDirections", jsonBody)
         .then(response => {
