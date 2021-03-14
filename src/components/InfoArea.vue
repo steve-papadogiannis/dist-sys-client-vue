@@ -33,7 +33,7 @@ div {
 ul {
   text-align: left;
   background: black;
-  height: 100px;
+  min-height: 100px;
 }
 
 li {

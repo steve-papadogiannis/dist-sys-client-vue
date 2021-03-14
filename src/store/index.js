@@ -47,6 +47,18 @@ export default new Vuex.Store({
           console.log(response);
           commit("storeResult", response.data);
           commit("storeShowLoading", false);
+          commit("storeInfoAreaItems", [
+            {
+              message: `Response received for ${
+                response.config.url
+              }: ${JSON.stringify(response.data)}`,
+              type: "info"
+            },
+            {
+              message: "Rendering...",
+              type: "info"
+            }
+          ]);
         })
         .catch(error => {
           console.error("There was an error!", error);
