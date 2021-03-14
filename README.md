@@ -1,6 +1,7 @@
 # Dist Sys Client Vue
 
 [![Build Status](https://travis-ci.com/steve-papadogiannis/dist-sys-client-vue.svg?branch=main)](https://travis-ci.com/steve-papadogiannis/dist-sys-client-vue)
+[![Known Vulnerabilities](https://snyk.io/test/github/steve-papadogiannis/dist-sys-client-vue/badge.svg)](https://snyk.io/test/github/steve-papadogiannis/dist-sys-client-vue)
 
 A small project that queries an HTTP backend to fetch directions
 for commuting from a start to an end point, specified in a Google Maps
