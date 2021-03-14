@@ -1,5 +1,6 @@
 <template>
   <div id="root">
+    <h1>{{ title }}</h1>
     <GmapMap
       id="googleMap"
       :center="{ lat: lat, lng: lng }"
@@ -36,6 +37,12 @@ export default {
   components: { InfoArea, Button },
   created() {
     this.resetState();
+  },
+  props: {
+    title: {
+      type: String,
+      default: ""
+    }
   },
   data() {
     return {
