@@ -4,47 +4,65 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/steve-papadogiannis/dist-sys-client-vue/badge.svg)](https://snyk.io/test/github/steve-papadogiannis/dist-sys-client-vue)
 
 A small project where the user selects a starting, and an ending location in a 
-Google Maps element and queries an **Directions Map Reduce Server** at the configured ip/port.
+Google Maps element and queries an **Directions Map Reduce Server** 
+(_[dist-sys-server-scala](https://github.com/steve-papadogiannis/dist-sys-server-scala)_) at the configured 
+hostname/port.
 
 ## Version
 
-* node: 12.18.4
-* npm: 6.14.6
-* vue: ^2.6.11
-* vuex: ^3.4.0
-* vue-router: ^3.2.0
-* axios: ^0.21.1
-* vue2-google-maps: ^0.10.7
+* Node: 12.18.4
+* Npm: 6.14.6
+* Vue: 2.6.11
+* Vuex: 3.4.0
+* Vue-router: 3.2.0
+* Axios: 0.21.1
+* Vue2-google-maps: 0.10.7
 
 ## Project setup
+
+In the project directory a `.env.local` file should be created with the below content:
+
+```properties
+VUE_APP_API_KEY=<Google Maps Javascript API Key>
 ```
+
+The **VUE_APP_** prefix is necessary for **Vue** to resolve the value and the `.env.local` is 
+used in order to avoid committing/pushing the secret **Api Key**
+
+Issue the below command in project's directory to install the project dependencies:
+
+```shell
 npm install
 ```
 
-### Compiles and hot-reloads for development
-```
+## Build and Run
+
+Issue the below command in project's directory:
+
+```shell
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Run unit tests
 
-### Run your unit tests
-```
+Issue the below command in project's directory:
+
+```shell
 npm run test:unit
 ```
 
-### Run your end-to-end tests
-```
+## Run end-to-end tests
+
+Issue the below command in project's directory:
+
+```shell
 npm run test:e2e
 ```
 
-### Lints and fixes files
-```
+## Linting
+
+Issue the below command in project's directory:
+
+```shell
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
