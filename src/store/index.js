@@ -44,7 +44,6 @@ export default new Vuex.Store({
       axios
         .post(`http://${HOST_NAME}:${PORT}/getDirections`, jsonBody)
         .then(response => {
-          console.log(response);
           commit("storeResult", response.data);
           commit("storeShowLoading", false);
           commit("storeInfoAreaItems", [
@@ -61,7 +60,6 @@ export default new Vuex.Store({
           ]);
         })
         .catch(error => {
-          console.error("There was an error!", error);
           commit("storeInfoAreaItems", [
             {
               message: error.message,
