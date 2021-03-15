@@ -32,14 +32,16 @@ User -> Client : Presses "Get Directions" button
 alt start and/or end location(s) are/is not defined
 Client --> User : Informs that the necessary location markers are not defined
 else
-Client -> Server : Queries for Directions Result
 alt connection error
+Client -X Server : Queries for Directions Result
 Client -> Client : Informs for the connection error
 Client --> User : Informs for the connection error
 else server error
+Client -> Server : Queries for Directions Result
 Server --> Client : Informs for the internal error
 Client --> User : Informs for the internal error
 else successful invocation
+Client -> Server : Queries for Directions Result
 Server --> Client : Responds with result
 Client -> Client : Renders polyline from result
 Client --> User : Renders polyline from result

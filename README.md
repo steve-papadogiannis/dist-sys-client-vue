@@ -18,6 +18,10 @@ hostname/port.
 * Axios: 0.21.1
 * Vue2-google-maps: 0.10.7
 
+## Sequence Diagram
+
+![Lifecycle Sequnece Diagram](./images/lifecycle.svg)
+
 ## Project setup
 
 In the project directory a `.env.local` file should be created with the below content:
