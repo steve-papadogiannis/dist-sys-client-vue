@@ -47,9 +47,11 @@ Issue the below command in project's directory:
 npm run serve
 ```
 
-Application will be bound to http://localhost:8383/
+Application will be bound to http://localhost:8080/
+and the server will be contacted at http://localhost:8383
 
-If different hostname or/and port is/are preferred, changes in the content:
+If different hostname or/and port is/are preferred for the 
+server connection, changes in the content:
 
 ```properties
 VUE_APP_HOST_NAME=localhost
